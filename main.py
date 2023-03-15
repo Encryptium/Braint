@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, send_from_directory
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import random
@@ -11,7 +11,7 @@ app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 
 
-### Functions ###
+
 
 # Generate random ID for the tasks
 def braint_task_id():
@@ -34,6 +34,20 @@ def bool_to_int(bool):
 		return 1
 	else:
 		return 0
+
+
+### Manifest ###
+@app.route('/manifest.webmanifest')
+def send_report():
+  return send_from_directory('', 'manifest.webmanifest')
+
+@app.route('/service-worker.js')
+def service_worker():
+  return send_from_directory('static', 'service-worker.js')
+
+@app.route('/sitemap.xml')
+def sitemap():
+  return send_from_directory('', 'sitemap.xml')
 
 ### Main Pages ###
 
@@ -63,7 +77,7 @@ def login():
 	
 		# Refresh if account doesn't exist
 		if len(c.execute("SELECT username FROM users WHERE lower(username) = ?", (username.lower(),)).fetchall()) == 0:
-			return redirect('/login')
+			return redirect('/login?error=exist')
 		else:
 			pass
 			
@@ -81,7 +95,7 @@ def login():
 			# Close database connection
 			conn.close()
 			# If the username and password are incorrect, redirect to the login page
-			return redirect('/login')
+			return redirect('/login?error=invalid')
 	
 	# If the user is not logged in, render the login page
 	return render_template('login.html')
@@ -99,6 +113,16 @@ def register():
 		# Get the username and password from the form
 		username = request.form['username']
 		password = request.form['password']
+		password_conf = request.form['password2']
+
+		# makes sure username/password isn't blank
+		if username == "" or username.isspace() or password == "" or password.isspace():
+			return redirect('/register?error=blank')
+
+		# confirms password
+		if not(password == password_conf):
+			return redirect('/register?error=match')
+			
 		# Check if the username is already taken
 		conn = sqlite3.connect('db.sqlite3')
 		c = conn.cursor()
@@ -107,7 +131,7 @@ def register():
 			# Close database connection
 			conn.close()
 			# If the username is already taken, redirect to the register page
-			return redirect('/register')
+			return redirect('/register?error=taken')
 		else:
 			# Close database connection
 			conn.close()

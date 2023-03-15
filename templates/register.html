@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+		
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVZT4SD7ZY"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'G-WVZT4SD7ZY');
+		</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Braint</title>
 		<link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/portal.css">
+		<script src="/static/portal.js" defer></script>
 </head>
 <body>
+	<img id="portal-logo" src="/static/images/logo.png" title="Braint">
+
 	
 	<form action="/register" method="post">
 			<h1>Register</h1>
@@ -17,6 +31,8 @@
 			<input type="submit" name="register" value="Register">
 			<br>
 			<p class="message">Already have an account?<br><a href="/login">Login</a></p>
+
+			<div id="registration-error"></div>
 	</form>
 
 </body>

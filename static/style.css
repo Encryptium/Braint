@@ -3,6 +3,7 @@
 
 /* Styles */
 @import url("/static/navbar.css");
+@import url("/static/darkmode.css");
 
 * {
 	font-family: 'IBM Plex Sans', sans-serif;
@@ -35,6 +36,9 @@ h1 {
 	margin: 45px auto auto 315px;
 	text-align: left;
 /* 	position: absolute; */
+	-webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 input, button {
@@ -46,6 +50,25 @@ input, button {
 	outline: none;
 	border-radius: 4px;
 }
+
+input[type="checkbox"] {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4285F4 !important;
+}
+
+
 
 table {
 	border-collapse: collapse;
@@ -105,11 +128,35 @@ a.danger {
 	}
 }
 
+/* Completed Dropdown */
+#completed {
+	cursor: pointer;
+	padding: 10px;
+	width: fit-content;
+	border-radius: 4px;
+	background-color: transparent;
+	transition: background-color 0.5s;
+}
+
+#completed:hover {
+	background-color: rgba(255, 255, 255, 0.1) !important;
+	transition: background-color 0.3s;
+}
+
+#completed * {
+	background-color: transparent !important;
+}
+
+#completed-tasks {
+	visibility: hidden;
+}
+
 /* Task Elements */
 .task {
 	background-color: whitesmoke;
-	width: 70%;
+/* 	width: calc(70%); */
 	margin-left: 325px;
+	margin-right: 20px;
 	margin-top: 20px;
 	border-radius: 4px;
 	height: 50px;
@@ -117,7 +164,7 @@ a.danger {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.027), 
 							0 6px 15px 0 rgba(0, 0, 0, 0.103);
 	cursor: pointer;
-	transition: background-color 0.5s;
+/* 	transition: background-color 0.5s; */
 }
 
 .task:hover {
@@ -224,6 +271,13 @@ a.danger {
 	list-style-type: none;
 }
 
+#week-number {
+	margin: 5px auto auto 320px;
+	text-align: left;
+	color: grey !important;
+	font-weight: 600;
+}
+
 /* Display task are the list items */
 .display-task {
 	overflow-y: scroll;
@@ -272,3 +326,5 @@ a.danger {
 #settings-form a {
 	float: left;
 }
+
+

@@ -19,7 +19,7 @@ function refreshContent() {
 
 			// Look through each task
 			for (let i = 0; i < tasks.length; i++) {
-				// Get JSON taskDATA
+				// Get JSON taskData
 				var taskData = tasks[i].at(-1);
 
 				// If task occurs today
@@ -34,7 +34,7 @@ function refreshContent() {
 					// If the tasks aren't completed
 					if (taskData['repeat']) {
 						// If task is on repeat, add class
-						uncompletedTasksContainer.innerHTML += `<div class="task incomplete" id="${tasks[i][0]}" title="Repeats every week"><p>${tasks[i][1]}</p></div>`;
+						uncompletedTasksContainer.innerHTML += `<div class="task incomplete" id="${tasks[i][0]}" title="Repeats every week"><p>${tasks[i][1]}</p><span class="task-options" style="visibility:hidden"></span></div>`;
 					} else {
 						// If task is not repeating
 					uncompletedTasksContainer.innerHTML += `<div class="task incomplete no-repeat" id="${tasks[i][0]}"><p>${tasks[i][1]}</p></div>`;
@@ -61,6 +61,7 @@ function refreshContent() {
 			});
 		}
 	};
+
 
 	xhr.send();
 }
@@ -162,6 +163,9 @@ function deleteTask(taskID) {
 	
 	xhr.send();
 }
+
+
+
 
 // Load tasks first when page loads
 refreshContent();

@@ -7,11 +7,21 @@
 	box-sizing: border-box;
 }
 
+#portal-logo {
+ 	width: 100px;
+	position: absolute;
+	left: 50%;
+	top: 30px;
+	transform: translate(-50%);
+}
+
 form {
 	width: 30vw;
+	min-width: 415px;
 	position: absolute;
-	top: 40%;
+	top: calc(45% + 15px);
 	left: 50%;
+	margin-top: 50px;
 	transform: translate(-50%, -50%);
 	background-color: whitesmoke;
 	padding: 45px;
@@ -38,4 +48,18 @@ a {
 
 h1 {
 	margin-bottom: 50px;
+}
+
+#registration-error {
+	background-color: #df5f5f;
+	color: white;
+	font-weight: bold;
+	padding: 5px 7px;
+	border-radius: 4px;
+	position: absolute;
+	bottom: 13px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: none;
+	width: 90%;
 }

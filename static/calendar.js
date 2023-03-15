@@ -40,3 +40,12 @@ function refreshContent() {
 }
 
 refreshContent();
+
+// Get Week Number
+startDate = new Date(currentDate.getFullYear(), 0, 1);
+var days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
+         
+var weekNumber = Math.ceil(days / 7);   
+const displayWeekNumber = document.getElementById("week-number");
+
+displayWeekNumber.innerHTML = "Week " + weekNumber + " of " + currentDate.getFullYear();

@@ -29,6 +29,10 @@ const navContent =
 	<a href="/settings">
 		<li>Settings</li>
 	</a>
+
+ 	<a id="activate-darkmode">
+		<li>Dark Mode</li>
+	</a>
 </ul>`;
 
 navbar.innerHTML = navContent;

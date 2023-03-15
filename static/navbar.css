@@ -81,3 +81,11 @@
 .selected li {
 	background-color: lightgrey;
 }
+
+#activate-darkmode {
+	position: absolute;
+	bottom: 15px;
+	left: 0px;
+	width: 100%;
+	cursor: pointer;
+}
